@@ -67,7 +67,7 @@ def parse_ucf101_splits():
         return vid, label
 
     splits = []
-    for i in xrange(1, 4):
+    for i in range(1, 4):
         train_list = [line2rec(x) for x in open('ucf101_splits/trainlist{:02d}.txt'.format(i))]
         test_list = [line2rec(x) for x in open('ucf101_splits/testlist{:02d}.txt'.format(i))]
         splits.append((train_list, test_list))
@@ -98,7 +98,7 @@ def parse_hmdb51_splits():
     class_info_list = map(parse_class_file, class_files)
 
     splits = []
-    for i in xrange(1, 4):
+    for i in range(1, 4):
         train_list = [
             (vid, class_dict[cls[0]]) for cls in class_info_list for vid in cls[2] if cls[1] == i
         ]
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     f_info = parse_directory(frame_path, rgb_p, flow_x_p, flow_y_p)
 
     print('writing list files for training/testing')
-    for i in xrange(max(num_split, len(split_tp))):
+    for i in range(max(num_split, len(split_tp))):
         lists = build_split_list(split_tp, f_info, i, shuffle)
         open(os.path.join(out_path, 'train_rgb_split{}.txt'.format(i + 1)), 'w').writelines(lists[0][0])
         open(os.path.join(out_path, 'val_rgb_split{}.txt'.format(i + 1)), 'w').writelines(lists[0][1])
